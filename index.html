@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday Cheri 💖</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      overflow-x: hidden;
+      perspective: 1000px;
+      background: linear-gradient(135deg, #fff0f6, #ffe6f0, #ffd6e8);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 3rem;
+      color: #ff1493;
+      margin-top: 30px;
+      animation: bump 2s infinite;
+    }
+
+    @keyframes bump {
+      0%, 100% { transform: scale(1); }
+      25% { transform: scale(1.08); }
+      50% { transform: scale(1.12); }
+      75% { transform: scale(1.05); }
+    }
+
+    .timer {
+      text-align: center;
+      font-size: 1.5rem;
+      margin: 20px;
+      color: #d63384;
+    }
+
+    /* Gift Box */
+    .gift-box {
+      width: 200px;
+      height: 200px;
+      margin: 30px auto;
+      background: #ff69b4;
+      position: relative;
+      border-radius: 15px;
+      cursor: pointer;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      color: white;
+      font-weight: bold;
+      animation: giftBounce 2s infinite;
+    }
+
+    @keyframes giftBounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .gift-box:before, .gift-box:after {
+      content: "";
+      position: absolute;
+      background: #fff;
+    }
+    .gift-box:before { width: 40px; height: 100%; left: 80px; }
+    .gift-box:after { height: 40px; width: 100%; top: 80px; }
+
+    .love-letter {
+      max-width: 700px;
+      margin: 40px auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      font-size: 1.2rem;
+      line-height: 1.6;
+      display: none;
+      animation: fadeIn 2s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .slideshow {
+      width: 300px;
+      height: 300px;
+      margin: 30px auto;
+      position: relative;
+      overflow: hidden;
+      border-radius: 20px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+    }
+
+    .slideshow img {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+    .slideshow img.active { opacity: 1; }
+
+    .decorations {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 9999;
+    }
+
+    .heart, .petal, .sparkle, .butterfly { position: absolute; user-select: none; }
+
+    .heart { font-size: 20px; color: #ff69b4; animation: floatUp 6s linear infinite; }
+    .petal { font-size: 18px; color: pink; animation: fall 7s linear infinite; }
+    .sparkle { font-size: 12px; color: gold; animation: twinkle 2s ease-in-out infinite; }
+    .butterfly { font-size: 28px; animation: fly 10s linear infinite, flutter 0.6s ease-in-out infinite alternate; }
+
+    @keyframes floatUp { from { transform: translateY(100vh) scale(0.5); opacity: 1; } to { transform: translateY(-10vh) scale(1.5); opacity: 0; } }
+    @keyframes fall { from { transform: translateY(-10vh) rotate(0deg); opacity: 1; } to { transform: translateY(110vh) rotate(360deg); opacity: 0; } }
+    @keyframes twinkle { 0%,100%{opacity:0;transform:scale(0.5);}50%{opacity:1;transform:scale(1.2);} }
+
+    @keyframes fly {
+      0% { transform: translate3d(-10vw, 50vh, 0) rotateY(0deg); }
+      25% { transform: translate3d(30vw, 20vh, 200px) rotateY(90deg); }
+      50% { transform: translate3d(60vw, 80vh, -150px) rotateY(180deg); }
+      75% { transform: translate3d(90vw, 30vh, 100px) rotateY(270deg); }
+      100% { transform: translate3d(110vw, 60vh, 0) rotateY(360deg); }
+    }
+    @keyframes flutter { from { transform: scaleX(1); } to { transform: scaleX(-1); } }
+
+    .music-control {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #ff69b4;
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      color: white;
+      font-size: 1.2rem;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+  </style>
+</head>
+<body>
+  <h1>Happy Birthday Cheri 🎂💖</h1>
+  <div class="timer" id="timer"></div>
+
+  <!-- Gift Box -->
+  <div class="gift-box" id="giftBox">🎁</div>
+  <div class="love-letter" id="loveLetter">
+    <!-- Your love letter content here -->
+    To the man who taught me what love truly means 💖
+
+From a friend, you became my love,
+From my love, you’ll soon be my husband 💍✨
+On this special day, I wish you the happiest birthday, my dearest,
+From your forever babygirl 💕
+
+I pray this year unfolds like the most beautiful chapter of your life 📖🌹
+A journey filled with joy, success, and countless blessings.
+Believe me, I’m more excited for your birthday than you are—
+Because celebrating you is my greatest happiness. 🎂💫
+
+Through every high and every low,
+I promise to walk with you, hand in hand 🤝
+Even when shadows fade in the dark,
+My love will never leave you—
+You are my light, my forever, my always 🌙❤️
+
+The universe is built upon love,
+And in that vast infinity, I wish ours to shine
+For decades, for centuries, for lifetimes to come—
+Even in another life, another world, another sky 🌌💞
+
+The best part of my life is the warmth of your presence.
+When you look at me, it feels like the sun has kissed my soul ☀️
+Your warmth is the only thing my heart will ever crave.
+
+I don’t wish for grand promises,
+I wish for truthful moments.
+To grow with you,
+To live with you,
+To share the same home, the same room,
+The same bed, the same blanket, the same dreams 🏡💖
+
+Life has shown me one truth—
+You are my everything.
+And I exist only to celebrate forever with you. 💝
+
+Happy Birthday, my love 🌹🥂💋  </div>
+
+  <!-- Slideshow -->
+  <div class="slideshow">
+    <img src="https://media.istockphoto.com/id/2180419487/photo/miniature-girl-and-boy-holding-umbrella-isolate-on-white-background.jpg?s=612x612&w=0&k=20&c=cquKzEgms1yH1hyTHW7ZifrrwvDDHPdJfnIQTmd_nzo=" class="active" alt="Holding Hands">
+    <img src="https://media.istockphoto.com/id/177384727/photo/boy-kissing-girl.jpg?s=612x612&w=0&k=20&c=P9k8Cy5dDJpFtl2ZhgwnUswpsLqK-V5A4yoj6d_e3Ik=" alt="Boy Kissing Girl">
+    <img src="https://media.istockphoto.com/id/178957751/photo/children.jpg?s=612x612&w=0&k=20&c=R0GJx0oNmrrqDPzz-9TOfP6QlhVfI2enCzMcVj02VbA=" alt="Girl kissing Boy">
+    <img src="https://media.istockphoto.com/id/172638122/photo/first-kiss.jpg?s=612x612&w=0&k=20&c=0EXdnAiMF36kJYJVdlwbJLGvji_2n9OA0FGr7LQKJdw=" alt="Both Kissing">
+    <img src="https://media.istockphoto.com/id/803513404/photo/big-hug.jpg?s=612x612&w=0&k=20&c=zT-yNbZgNbdHjUW83ozDT2CEttDHVBt45ztQPUvEZA0=" alt="Hug">
+  </div>
+
+  <!-- Decorations -->
+  <div class="decorations" id="decor"></div>
+
+  <!-- Audio -->
+  <audio id="bgMusic" loop>
+    <source src="avalumnaanumringtone-23786.mp3" type="audio/mp3">
+  </audio>
+  <button class="music-control" id="musicBtn">▶️</button>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // Timer
+      function updateTimer() {
+        const startDate = new Date("2024-12-09T11:00:00");
+        const now = new Date();
+        let diff = now - startDate;
+        let years = Math.floor(diff / (1000*60*60*24*365));
+        diff -= years * (1000*60*60*24*365);
+        let months = Math.floor(diff / (1000*60*60*24*30));
+        diff -= months * (1000*60*60*24*30);
+        let days = Math.floor(diff / (1000*60*60*24));
+        diff -= days * (1000*60*60*24);
+        let hours = Math.floor(diff / (1000*60*60));
+        diff -= hours * (1000*60*60);
+        let minutes = Math.floor(diff / (1000*60));
+        diff -= minutes * (1000*60);
+        let seconds = Math.floor(diff / 1000);
+        document.getElementById("timer").innerText = 
+          `Together for ${years}y ${months}m ${days}d ${hours}h ${minutes}m ${seconds}s 💞`;
+      }
+      setInterval(updateTimer, 1000);
+      updateTimer();
+
+      // Slideshow
+      let slides = document.querySelectorAll(".slideshow img");
+      let index = 0;
+      setInterval(() => {
+        slides[index].classList.remove("active");
+        index = (index + 1) % slides.length;
+        slides[index].classList.add("active");
+      }, 4000);
+
+      // Decorations
+      const decor = document.getElementById("decor");
+      function createElement(type, className, content, duration) {
+        const el = document.createElement("div");
+        el.className = className;
+        el.innerHTML = content;
+        el.style.left = Math.random() * 100 + "vw";
+        el.style.animationDuration = duration + "s";
+        decor.appendChild(el);
+        setTimeout(() => el.remove(), duration*1000);
+      }
+      setInterval(() => createElement("div", "heart", "❤️", 6), 400);
+      setInterval(() => createElement("div", "petal", "🌸", 7), 1000);
+      setInterval(() => createElement("div", "sparkle", "✨", 2), 500);
+      setInterval(() => createElement("div", "butterfly", "🦋", 10), 3000);
+
+      // Gift Box click
+      const giftBox = document.getElementById("giftBox");
+      const loveLetter = document.getElementById("loveLetter");
+      giftBox.addEventListener("click", () => {
+        giftBox.style.display = "none";
+        loveLetter.style.display = "block";
+      });
+
+      // Music control
+      const musicBtn = document.getElementById("musicBtn");
+      const bgMusic = document.getElementById("bgMusic");
+      let playing = false;
+      musicBtn.addEventListener("click", () => {
+        if(!playing){
+          bgMusic.play();
+          musicBtn.textContent = "⏸️";
+          playing = true;
+        } else {
+          bgMusic.pause();
+          musicBtn.textContent = "▶️";
+          playing = false;
+        }
+      });
+    });
+  </script>
+</body>
+</html>
+
